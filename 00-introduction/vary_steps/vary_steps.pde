@@ -9,20 +9,23 @@ class Walker {
   
   void display() {
     stroke(0);
-    // point(x,y);
+  }
+  float montecarlo() {
+    while (true) {
+      float r1 = random(-1,1);
+      float prob = r1 * r1;
+      float r2 = random(1);
+
+      if (r2 < prob) {
+        return r1;
+      }
+    }
   }
   void step() {
-    float stepsize = 10;
-    float stepx = random(-stepsize, stepsize);
-    float stepy = random(-stepsize, stepsize);
+    float stepsize = 5;
+    float stepx = montecarlo() * stepsize;
+    float stepy = montecarlo() * stepsize;
     
-    // if (random(1) >= 0.5) {
-    //   stepx = mouse_direction_step(mouseX, x, stepx);
-    // }
-    // if (random(1) >= 0.5) {
-    //   stepy = mouse_direction_step(mouseY, y, stepy);
-    // }
-
     line(x,y,x+stepx,y+stepy);
     x += stepx;
     y += stepy;
