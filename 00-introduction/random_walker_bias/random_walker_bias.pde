@@ -14,7 +14,7 @@ class Walker {
   
   void step() {
     float stepx = random(-1, 0);
-    float stepy = random(1);
+    float stepy = random(-1, 0);
     
     float xbias = random(1);
     float ybias = random(1);
@@ -23,7 +23,7 @@ class Walker {
       stepx = abs(stepx);
     }
     if (ybias >= 0.4) {
-      stepy *= -1;
+      stepy = abs(stepy);
     }
 
     x += stepx;
