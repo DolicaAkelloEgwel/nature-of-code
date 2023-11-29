@@ -11,25 +11,24 @@ class Walker {
     stroke(0);
     point(x,y);
   }
+  float mouse_direction_step(int mouse_pos, float point, float step_value) {
+    if (mouse_pos > point) {
+      return abs(step_value);
+    }
+    if ((mouse_pos < point) && (step_value > 0)) {
+      return step_value *= -1;
+    }
+    return step_value;
+  }
   void step() {
     float stepx = random(-1, 1);
     float stepy = random(-1, 1);
     
     if (random(1) >= 0.5) {
-      if (mouseX > x) {
-        stepx = abs(stepx);
-      }
-      if ((mouseX < x) && (stepx > 0)) {
-        stepx *= -1;
-      }
+      stepx = mouse_direction_step(mouseX, x, stepx);
     }
     if (random(1) >= 0.5) {
-      if (mouseY > y) {
-        stepy = abs(stepy);
-      }
-      if ((mouseY < y) && (stepy > 0)) {
-        stepy *= -1;
-      }
+      stepy = mouse_direction_step(mouseY, y, stepy);
     }
 
     x += stepx;
